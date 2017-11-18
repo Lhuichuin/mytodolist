@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mytodolist</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  <% if current_user %> 
+  <p>Signed in as <%= current_user.first_name %> <%= current_user.last_name %></p>
+  <% else %>
+  <p>Not signed in</p>
+  <% end %>
+
+  <% flash.each do |key, value| -%>
+  <div id="flash_<%= key %>"><%=h value %></div>
+  <% end %>
+
+  <%= yield %>
+</body>
+</html>
