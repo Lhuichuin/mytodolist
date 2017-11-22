@@ -1,11 +1,17 @@
 <div class= "container">
-<h1><%= current_user.first_name %>'s List(s)</h1>
+	<h1><%= current_user.first_name %>'s List(s)</h1>
 
-<% @lists.each do |l| %>
-<h2><%= link_to l.name, edit_list_path(l.id) %></h2>
+	<% @lists.each do |l| %>
+	<div class= "box">
+		<h3><%= link_to l.name, edit_list_path(l.id) %> (<%= l.tasks.count %>)</h3>
 
-<%= button_to 'Delete', list_path(l.id), method: :delete, data: {confirm: 'Are you sure?' }%>
-<%= button_to 'Add a task to this list', new_list_task_path(l.id) %>
-<%= button_to 'See all tasks in this list', list_tasks_path(l.id) %>
-<% end %>
+<!--<%= button_to 'Delete', list_path(l.id), method: :delete, data: {confirm: 'Are you sure?' }%>-->
+		<a data-confirm="Are you sure?" data-method="delete" href="/lists/<%= l.id %>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+		<a href="/lists/<%= l.id %>/tasks/new"><i class="fa fa-plus" aria-hidden="true"></i>
+<!--<%= link_to 'See all tasks in this list', list_tasks_path(l.id) %>-->
+		<a href="/lists/<%= l.id %>/tasks"><i class="fa fa-list" aria-hidden="true"></i>
+			</div>
+	<% end %>
+	
+		<%= button_to 'Create new list', new_list_path %>
 </div>

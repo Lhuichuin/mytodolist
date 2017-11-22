@@ -27,8 +27,8 @@
  	background: #99c2ff;
  	color: black;
  }
- #status_notdone{}
- 	
- #status_doing{}
 
- #status_done{}
+.box{
+	height: 100px;
+	width: auto;
+}
