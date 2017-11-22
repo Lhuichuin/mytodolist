@@ -1,0 +1,14 @@
+<div class= "container">
+	<%= form_for @list do |form| %>
+
+
+	<div class="text-field">
+		<%= form.label :List_name %>
+		<%= form.text_field :name, type: 'name', placeholder: "eg: Packing List to India" %>
+	</div>
+
+	<div class="actions">
+		<%= form.submit %>
+	</div>
+	<% end %>
+</div>

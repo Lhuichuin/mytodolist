@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+ .indicator{
+ 	width: 100px;
+ 	height: 20px;
+ 	background: #666666;
+ 	float: left;
+ 	text-align: center;
+ 	color: white;
+ 	cursor: pointer;
+ }
+
+ .active{
+ 	background: #99c2ff;
+ 	color: black;
+ }
+ #status_notdone{}
+ 	
+ #status_doing{}
+
+ #status_done{}

@@ -14,6 +14,12 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
 
+    @response = Unirest.get "https://simple-weather.p.mashape.com/weather?lat=3.1279&lng=101.5945",
+    headers:{
+      "X-Mashape-Key" => "c6q9nWLL2ymsh3LBSPz4P0fZ12alp1TB9J9jsnMKGbEp5Hb2qQ",
+      "Accept" => "text/plain"
+    }
+    
   end
 
   # GET /users/new
@@ -89,3 +95,5 @@ class UsersController < ApplicationController
       # params.fetch(:user, {})
     end
   end
+
+

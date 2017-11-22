@@ -1,0 +1,13 @@
+<div class= "container">
+	<h1><%= @list.name %></h1>
+	<% if @list.tasks.count == 0 %>
+	<p>You have no tasks in this list :(</p>
+	<% else %>
+	<!-- need to add the list of tasks after the format and AJAx is sorted.  -->
+	<% end %>
+	
+	<%= link_to "Add tasks", new_list_task_path(@list.id) %>
+	<br>
+	<%= link_to "Create more lists", new_list_path %>
+
+</div>

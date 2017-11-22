@@ -88,4 +88,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  response = Unirest.get "https://simple-weather.p.mashape.com/weather?lat=1.0&lng=1.0",
+  headers:{
+    "X-Mashape-Key" => "c6q9nWLL2ymsh3LBSPz4P0fZ12alp1TB9J9jsnMKGbEp5Hb2qQ",
+    "Accept" => "text/plain"
+  }
 end

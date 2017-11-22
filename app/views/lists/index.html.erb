@@ -1,0 +1,11 @@
+<div class= "container">
+<h1><%= current_user.first_name %>'s List(s)</h1>
+
+<% @lists.each do |l| %>
+<h2><%= link_to l.name, edit_list_path(l.id) %></h2>
+
+<%= button_to 'Delete', list_path(l.id), method: :delete, data: {confirm: 'Are you sure?' }%>
+<%= button_to 'Add a task to this list', new_list_task_path(l.id) %>
+<%= button_to 'See all tasks in this list', list_tasks_path(l.id) %>
+<% end %>
+</div>

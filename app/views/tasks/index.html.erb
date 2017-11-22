@@ -1,0 +1,69 @@
+<div class= "container">
+	<%= form_tag list_tasks_path, method: :get do %>
+	<%= text_field_tag :search, params[:search], placeholder: 'Search' %>
+	<%= submit_tag 'Search' %>
+	<% end %>
+
+	<% if @tasks.present? %>
+
+	<% else %>
+	<p>There are no tasks containing the term(s) '<%= params[:term] %>'.</p>
+	<% end %>
+
+	<h1><%= @list.name %></h1>
+	<br>
+	<table>
+		<% @tasks.each do |t| %>
+		<tr>
+			<td><%= link_to t.task, edit_list_task_path(@list.id, t.id) %></td>
+			<!--<%= t.task %>-->
+			<td>
+				<div class= "status_notdone indicator <% if t.status == 'not_done' %>active<% end %>" data-id= "<%= t.id %>">Not Done</div>
+				<div class= "status_doing indicator <% if t.status == 'doing' %>active<% end %>" data-id= "<%= t.id %>">Doing</div>
+				<div class= "status_done indicator <% if t.status == 'done' %>active<% end %>" data-id= "<%= t.id %>">Done</div>
+			</td>
+			
+			<td>
+				<%= link_to 'Delete', list_task_path(@list.id, t.id), method: :delete, data: {confirm: 'Are you sure?' }%>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+
+	<div>
+		<%= link_to 'Add task', new_list_task_path %>
+		<br>
+		<%= link_to 'Back to lists', lists_path %>
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function(){
+
+		$(".status_done").click(function(){
+			var self = this;
+			$.get("/lists/"+ <%=@list.id %> + "/tasks/" + $(this).data("id") + "/change_status_done", function(data, status){
+				$(self).parent().children().removeClass('active');
+				$(self).addClass('active');
+			});
+		});
+
+		$(".status_doing").click(function(){
+			var self = this;
+			$.get("/lists/"+ <%=@list.id %> + "/tasks/" + $(this).data("id") + "/change_status_doing", function(data, status){
+				$(self).parent().children().removeClass('active');
+				$(self).addClass('active');
+			});
+		});
+		
+		$(".status_notdone").click(function(){
+			var self = this;
+			$.get("/lists/"+ <%=@list.id %> + "/tasks/" + $(this).data("id") + "/change_status_not_done", function(data, status){
+				$(self).parent().children().removeClass('active');
+				$(self).addClass('active');
+			});
+		});
+
+	});
+</script>

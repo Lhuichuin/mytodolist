@@ -1,0 +1,12 @@
+<%= form_for [@list, @task] do |form| %>
+
+<div class= "text-field">
+	<%= form.label :task %>
+	<%= form.text_field :task, type: 'task', placeholder: 'eg: towels' %>
+</div>
+
+<div class="actions">
+	<%= form.submit %>
+</div>
+<% end %>
+
